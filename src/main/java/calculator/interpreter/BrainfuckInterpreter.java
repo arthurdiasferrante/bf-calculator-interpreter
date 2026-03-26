@@ -7,11 +7,13 @@ import java.util.List;
 public class BrainfuckInterpreter {
     private StringBuilder output = new StringBuilder();
 
-
     private String interpret(String code) {
+
         int[] memory = new int[30000];
         int pointer = 0;
         int codePointer = 0;
+        output.setLength(0);
+
 
         while (codePointer < code.length()) {
             char command = code.charAt(codePointer);
