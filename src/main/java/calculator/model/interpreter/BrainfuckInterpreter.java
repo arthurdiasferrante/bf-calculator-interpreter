@@ -22,8 +22,8 @@ public class BrainfuckInterpreter {
             switch (command) {
                 case '>' -> pointer = (pointer + 1) % memory.length;
                 case '<' -> pointer = (pointer - 1 < 0) ? memory.length - 1 : pointer - 1;
-                case '+' -> memory[pointer]++;
-                case '-' -> memory[pointer]--;
+                case '+' -> memory[pointer] = (memory[pointer] + 1) % 256;
+                case '-' -> memory[pointer] = (memory[pointer] == 0) ? 256 : memory[pointer] - 1;
                 case '.' -> output.append((char) memory[pointer]);
                 case ',' -> {
                     try {
