@@ -37,7 +37,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>calculator.Main</mainClass>
+                    <mainClass>bf.Main</mainClass>
                 </configuration>
             </plugin>
         </plugins>

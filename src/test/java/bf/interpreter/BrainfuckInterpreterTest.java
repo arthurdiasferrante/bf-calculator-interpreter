@@ -1,4 +1,4 @@
-package calculator.model.interpreter;
+package bf.interpreter;
 
 import org.junit.jupiter.api.Test;
 

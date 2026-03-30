@@ -1,12 +1,12 @@
-package calculator;
+package bf;
 
-import calculator.controller.Controller;
+import bf.calculator.controller.CalculatorController;
 
 public class Main {
 
     public static void main(String[] args) {
         try {
-            new Controller().start();
+            new CalculatorController().start();
         } catch (Exception ex) {
             ex.printStackTrace();
         }

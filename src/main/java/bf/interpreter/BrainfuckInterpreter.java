@@ -1,4 +1,4 @@
-package calculator.model.interpreter;
+package bf.interpreter;
 
 import java.io.IOException;
 

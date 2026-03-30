@@ -1,6 +1,6 @@
-package calculator.model;
+package bf.calculator.model;
 
-import calculator.model.interpreter.BrainfuckInterpreter;
+import bf.interpreter.BrainfuckInterpreter;
 
 import java.io.IOException;
 
@@ -44,29 +44,23 @@ public class Calculator {
         return this.ascii;
     }
 
-    public void sumOperation() {
+    public void sumOperation() throws IOException {
         try (var inputStream = Calculator.class.getResourceAsStream("/scripts/soma.bf")) {
             if (inputStream == null) {
-                System.err.println("Arquivo .bf não encontrado na pasta resources/scripts/");
-                return;
+                throw new IllegalStateException("Arquivo .bf não encontrado na pasta resources/scripts/");
             }
             String sumCode = new String(inputStream.readAllBytes());
             bfCode.append("<").append(sumCode);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         }
     }
 
-    public void subtractionOperation() {
+    public void subtractionOperation() throws IOException {
         try (var inputStream = Calculator.class.getResourceAsStream("/scripts/subtração.bf")) {
             if (inputStream == null) {
-                System.err.println("Arquivo .bf não encontrado na pasta resources/scripts/");
-                return;
+                throw new IllegalStateException("Arquivo .bf não encontrado na pasta resources/scripts/");
             }
             String sumCode = new String(inputStream.readAllBytes());
             bfCode.append("<").append(sumCode);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         }
     }
 

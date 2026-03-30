@@ -20,23 +20,25 @@ A plain interpreter is easy to underestimate; a **visualizer** shows that you un
 - Maven  
 - Spring Boot Web in `pom.xml` 
 
-## Project layout 
+## Project layout
 
-- `calculator` — `Main` (entry point).  
-- `calculator.controller` —  orchestrates user interaction (console today; Spring `@RestController` can live here later).  
-- `calculator.model` — `Calculator` (builds BF programs).  
-- `calculator.model.interpreter` — interpreter used by the model (still “model layer,” not HTTP).  
+- `bf` — root package; `Main` is the entry point.  
+- `bf.interpreter` — Brainfuck engine (shared by every “showcase” later).  
+- `bf.calculator` — calculator feature in **MVC**:
+  - `bf.calculator.model` — `Calculator` (state + BF string building).  
+  - `bf.calculator.view` — `CalculatorConsoleView` (terminal I/O only).  
+  - `bf.calculator.controller` — `CalculatorController` (wires model + interpreter + view).  
 - `src/main/resources/scripts/` — `.bf` example programs.  
-- Viewer: terminal I/O today; a future React app would be the view in front of the same API.
+- Later, React can replace the “view” while the controller stays similar behind HTTP.
 
 ## Run (console)
 
 ```bash
 mvn compile
-java -cp target/classes calculator.Main
+java -cp target/classes bf.Main
 ```
 
-The console flow is driven by `calculator.controller.Controller` (commands like `+`, `pronto`, `estresse`, etc.).
+The calculator flow is `CalculatorController` → `Calculator` + `BrainfuckInterpreter` + `CalculatorConsoleView`.
 
 ## Portfolio angle
 
