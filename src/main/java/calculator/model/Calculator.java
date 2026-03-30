@@ -65,7 +65,7 @@ public class Calculator {
                 return;
             }
             String sumCode = new String(inputStream.readAllBytes());
-            bfCode.append(sumCode);
+            bfCode.append("<").append(sumCode);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

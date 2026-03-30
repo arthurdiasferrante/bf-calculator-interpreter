@@ -43,6 +43,9 @@ public class Controller {
         String result = "";
 
         switch (input) {
+            case "-":
+                calculator.subtractionOperation();
+                break;
             case "+":
                 calculator.sumOperation();
                 break;
