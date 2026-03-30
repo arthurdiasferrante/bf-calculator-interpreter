@@ -7,11 +7,10 @@ import java.io.IOException;
 
 public class Calculator {
     private final BrainfuckInterpreter interpreter = new BrainfuckInterpreter();
-    private StringBuilder bfCode;
+    private StringBuilder bfCode = new StringBuilder("");;
     private int ascii;
 
     public String addNumbersBf(int number1, int number2) {
-        bfCode = new StringBuilder();
 
         // o que isso faz? cheque
 
@@ -38,12 +37,12 @@ public class Calculator {
 
     public void newNumber(int number) {
         ascii = number + '0';
+        bfCode.append(",").append(ascii);
     }
 
     public int getCurrentAscii() {
         return this.ascii;
     }
-
 
 
     public void sumOperation() {
@@ -72,4 +71,11 @@ public class Calculator {
         }
     }
 
+    public String getBfCode() {
+        return bfCode.toString();
+    }
+
+    public String confirmationMethod() {
+        return interpreter.execute(bfCode.toString());
+    }
 }

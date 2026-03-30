@@ -18,9 +18,7 @@ public class Controller {
     public Controller() {
         this.bfInterpreter = new BrainfuckInterpreter();
         this.isRunning = true;
-        this.bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         this.calculator = new Calculator();
-
     }
 
     public void start() throws IOException {
@@ -33,6 +31,7 @@ public class Controller {
     }
 
     public void calculatorInterface() throws IOException {
+        this.bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         String input = bufferedReader.readLine().toLowerCase();
         if (input.equals("sair")) {
             System.out.println("Saindo..");
@@ -42,14 +41,16 @@ public class Controller {
 
 
         String result = "";
-        switch (input) {
-            case "somar":
-                System.out.println("Digite o primeiro número");
-                String number1 = bufferedReader.readLine();
 
-                System.out.println("Digite o segundo numero");
-                String number2 = bufferedReader.readLine();
-                result = calculator.addNumbersBf(Integer.parseInt(number1), Integer.parseInt(number2));
+        switch (input) {
+            case "+":
+                calculator.sumOperation();
+                break;
+            case "check":
+                System.out.println(calculator.getBfCode());
+                break;
+            case "pronto":
+                System.out.println(calculator.confirmationMethod());
                 break;
             case "estresse":
                 try (var inputStream = Main.class.getResourceAsStream("/scripts/maldebrot.bf")) {
@@ -66,12 +67,20 @@ public class Controller {
                     result = "Erro de I/O";
                 }
                 break;
+            default:
+                try {
+                    int number = Integer.parseInt(input);
+                    if (number >= 10 || number <= -1 ) {
+                        System.out.println("Apenas números de 0-9");
+                        return;
+                    }
+                    calculator.newNumber(number);
+                } catch (Exception _) {
+                    System.out.println("Não entendi o comando");
+                }
+                break;
         }
-
-
         showResult(result);
-
-
     }
 
     public void showResult(String result) {
