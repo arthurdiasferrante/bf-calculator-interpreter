@@ -37,7 +37,7 @@ public class Calculator {
 
     public void newNumber(int number) {
         ascii = number + '0';
-        bfCode.append(",").append(ascii);
+        bfCode.append("+".repeat(number)).append(">");
     }
 
     public int getCurrentAscii() {
@@ -52,7 +52,7 @@ public class Calculator {
                 return;
             }
             String sumCode = new String(inputStream.readAllBytes());
-            bfCode.append(sumCode);
+            bfCode.append("<").append(sumCode);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -75,7 +75,11 @@ public class Calculator {
         return bfCode.toString();
     }
 
-    public String confirmationMethod() {
-        return interpreter.execute(bfCode.toString());
+    public void printResult() {
+        bfCode.append("<").append("+".repeat(48)).append(".");
+    }
+
+    public void clearBfCode() {
+        bfCode.setLength(0);
     }
 }

@@ -50,7 +50,12 @@ public class Controller {
                 System.out.println(calculator.getBfCode());
                 break;
             case "pronto":
-                System.out.println(calculator.confirmationMethod());
+                calculator.printResult();
+
+                String code = calculator.getBfCode();
+                System.out.println("Executando:" + code);
+                result = bfInterpreter.execute(code);
+                calculator.clearBfCode();
                 break;
             case "estresse":
                 try (var inputStream = Main.class.getResourceAsStream("/scripts/maldebrot.bf")) {
