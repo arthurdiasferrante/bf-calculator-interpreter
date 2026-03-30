@@ -1,13 +1,13 @@
 package calculator;
 
-import calculator.interpreter.BrainfuckInterpreter;
+import calculator.controller.Controller;
+import calculator.model.interpreter.BrainfuckInterpreter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class Main {
     public static void main(String[] args) {
-        BrainfuckInterpreter bf = new BrainfuckInterpreter();
-
+        Controller controller = new Controller();
         try {
             var resource = Main.class.getResource("/scripts/greetings.bf");
             if (resource == null) {
@@ -15,10 +15,8 @@ public class Main {
                 return;
             }
 
-            String script = Files.readString(Path.of(resource.toURI()));
-            String result = bf.execute(script);
+            controller.start();
 
-            System.out.println(result);
 
         } catch (Exception ex) {
             ex.printStackTrace();

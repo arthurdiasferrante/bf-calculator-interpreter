@@ -1,4 +1,4 @@
-package calculator.interpreter;
+package calculator.model.interpreter;
 
 import javax.print.DocFlavor;
 import java.util.ArrayList;

@@ -1,5 +1,6 @@
 package calculator.interpreter;
 
+import calculator.model.interpreter.BrainfuckInterpreter;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
