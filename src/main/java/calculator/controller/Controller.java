@@ -21,19 +21,33 @@ public class Controller {
     }
 
     public void start() throws IOException {
+        System.out.println("COLOQUE AQUI UM CÓDIGO EM BRAINFUCK E EU VOU TRADUZI-LO?????");
+        String bfCommands = "+-><[]., ";
         while (isRunning) {
-            calculatorInterface();
-
+            calculatorInterface(bfCommands);
 
         }
     }
 
-    public void calculatorInterface() throws IOException {
-        System.out.println("COLOQUE AQUI UM CODIGO EM BRAINFUCK E EU VOU TRADUZI-LO?????");
+    public void calculatorInterface(String bfCommands) throws IOException {
+        String input = bufferedReader.readLine();
 
-        String result = bfInterpreter.execute(bufferedReader.readLine());
+        if (input.equals("sair")) {
+            System.out.println("Saindo..");
+            isRunning = false;
+            return;
+        }
+        char[] inputCharArray = input.toCharArray();
+        for (Character chars : inputCharArray) {
+            if (!bfCommands.contains(chars.toString())) {
+                System.out.println("Comando inválido");
+                return;
+            }
+        }
 
+        String result = bfInterpreter.execute(input);
         showResult(result);
+
     }
 
     public void showResult(String result) {
