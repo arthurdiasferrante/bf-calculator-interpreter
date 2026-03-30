@@ -1,6 +1,7 @@
 package calculator.model.interpreter;
 
 import javax.print.DocFlavor;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +25,13 @@ public class BrainfuckInterpreter {
                 case '+' -> memory[pointer]++;
                 case '-' -> memory[pointer]--;
                 case '.' -> output.append((char) memory[pointer]);
+                case ',' -> {
+                    try {
+                        memory[pointer] = System.in.read();
+                    } catch (IOException e) {
+                        memory[pointer] = 0;
+                    }
+                }
                 case '[' -> {
                     if (memory[pointer] == 0) {
                         int loop = 1;
