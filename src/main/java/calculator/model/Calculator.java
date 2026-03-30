@@ -34,4 +34,19 @@ public class Calculator {
 
         return interpreter.execute(bfCode.toString());
     }
+
+    public void sumOperation() {
+        try (var inputStream = Main.class.getResourceAsStream("/scripts/soma.bf")) {
+            if (inputStream == null) {
+                System.err.println("Arquivo .bf não encontrado na pasta resources/scripts/");
+                return;
+            }
+            String sumCode = new String(inputStream.readAllBytes());
+            bfCode.append(sumCode);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
 }

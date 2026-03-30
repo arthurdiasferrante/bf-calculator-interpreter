@@ -1,58 +1,46 @@
-# Brainfuck Calculator (Portfolio Project)
+# Brainfuck Visualizer (Portfolio Project)
 
-A Java project focused on building a small calculator concept powered by a Brainfuck interpreter.
+A Java project that turns Brainfuck from a black box into something you can **see**: the memory tape, the pointer, and how each instruction changes the machine state-plus the program’s text output when execution finishes.
 
-The current version executes `.bf` scripts from the project resources and prints the result to the console. It is designed as a portfolio piece to show language parsing/interpreting logic, control flow handling, and clean project organization.
+The goal is a small **playground:** runnable examples that stay interesting while staying educational (calculator-style flows, sorting, and other “beginner algorithm” ideas expressed in BF).
 
-## What this project does
+## Why this direction
 
-- Interprets Brainfuck code (`> < + - . [ ]`).
-- Uses a memory tape with 30,000 cells.
-- Supports loop execution with nested bracket matching.
-- Loads Brainfuck scripts from `src/main/resources/scripts/`.
-- Prints the interpreted output through `Main`.
+A plain interpreter is easy to underestimate; a **visualizer** shows that you understand the execution model (tape, cells, loops) and can build tooling around it. Pairing that with a **library of example programs** makes the repo useful for others learning the language.
 
-## Tech Stack
+## Planned features
 
-- Java 24
-- Maven
-- JavaFX dependencies configured in `pom.xml` (for future UI expansion)
-- FlatLaf dependency configured (for future visual interface)
+- **Tape view** — cells updating as the program runs; highlight the data pointer.
+- **Output** — show accumulated output (e.g. after a run, or step-by-step depending on how far you take it).
+- **Example suite** — programs such as a BF-based calculator flow, a sort, and other short “starter” algorithms written in Brainfuck.
 
-## Project Structure
+## Current stack
 
-- `src/main/java/calculator/Main.java`  
-  Entry point that loads and runs a `.bf` script.
-- `src/main/java/calculator/interpreter/BrainfuckInterpreter.java`  
-  Core interpreter implementation.
-- `src/main/resources/scripts/`  
-  Example Brainfuck scripts.
+- Java 24  
+- Maven  
+- JavaFX and FlatLaf in `pom.xml`, intended for the desktop UI around the interpreter.
 
-## How to run
+## Project layout (evolving)
 
-### Requirements
+- `src/main/java/calculator/interpreter/` — Brainfuck interpreter core.  
+- `src/main/resources/scripts/` — `.bf` example programs.  
+- `src/main/java/calculator/Main.java` — entry point (console runner while the visualizer is wired up).
 
-- Java 24 installed
-- Maven installed
-
-### Steps
+## Run (console)
 
 ```bash
 mvn compile
 java -cp target/classes calculator.Main
 ```
 
-By default, `Main` loads:
+By default, `Main` loads a script from `src/main/resources/scripts/` (e.g. `greetings.bf`). You can point it at another file to try different examples.
 
-`src/main/resources/scripts/greetings.bf`
+## Portfolio angle
 
-You can change the loaded script in `Main.java` to run other examples.
+- Interpreter design (instruction dispatch, loops, memory model).  
+- UI/UX for making an abstract language tangible (tape + output).  
+- Curated BF examples that balance “impressive” with readable.
 
-## Why this is in my portfolio
+---
 
-This project demonstrates:
-
-- Interpreter logic and command-by-command execution
-- Control structures and pointer-based memory manipulation
-- Code organization in a Java/Maven project
-- Foundation for evolving from console execution to a full calculator UI
+*This README describes the product direction; the visualizer UI and full example set may grow incrementally. Check commits for what’s implemented today.*
