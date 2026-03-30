@@ -1,5 +1,6 @@
 package calculator.controller;
 
+import calculator.model.Calculator;
 import calculator.model.interpreter.BrainfuckInterpreter;
 
 import java.io.BufferedReader;
@@ -11,6 +12,7 @@ public class Controller {
     private BrainfuckInterpreter bfInterpreter;
     private boolean isRunning;
     private BufferedReader bufferedReader;
+    private Calculator calculator;
 
 
 
@@ -18,34 +20,34 @@ public class Controller {
         this.bfInterpreter = new BrainfuckInterpreter();
         this.isRunning = true;
         this.bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        this.calculator = new Calculator();
+
     }
 
     public void start() throws IOException {
-        System.out.println("COLOQUE AQUI UM CÓDIGO EM BRAINFUCK E EU VOU TRADUZI-LO?????");
-        String bfCommands = "+-><[]., ";
+        System.out.println("Olá bem vindo a calculadora simples e normal.");
         while (isRunning) {
-            calculatorInterface(bfCommands);
+            calculatorInterface();
 
         }
     }
 
-    public void calculatorInterface(String bfCommands) throws IOException {
-        String input = bufferedReader.readLine();
+    public void calculatorInterface() throws IOException {
+//        String input = bufferedReader.readLine();
+//        if (input.equals("sair")) {
+//            System.out.println("Saindo..");
+//            isRunning = false;
+//            return;
+//        }
 
-        if (input.equals("sair")) {
-            System.out.println("Saindo..");
-            isRunning = false;
-            return;
-        }
-        char[] inputCharArray = input.toCharArray();
-        for (Character chars : inputCharArray) {
-            if (!bfCommands.contains(chars.toString())) {
-                System.out.println("Comando inválido");
-                return;
-            }
-        }
+        System.out.println("Digite o primeiro número");
+        String number1 = bufferedReader.readLine();
 
-        String result = bfInterpreter.execute(input);
+        System.out.println("Digite o segundo numero");
+        String number2 = bufferedReader.readLine();
+
+        String result = calculator.addNumbersBf(Integer.parseInt(number1), Integer.parseInt(number2));
+
         showResult(result);
 
     }
