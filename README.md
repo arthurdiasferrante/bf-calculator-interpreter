@@ -16,15 +16,18 @@ A plain interpreter is easy to underestimate; a **visualizer** shows that you un
 
 ## Current stack
 
-- Java 24  
+- Java 21  
 - Maven  
-- JavaFX and FlatLaf in `pom.xml`, intended for the desktop UI around the interpreter.
+- Spring Boot Web in `pom.xml` 
 
-## Project layout (evolving)
+## Project layout 
 
-- `src/main/java/calculator/interpreter/` — Brainfuck interpreter core.  
+- `calculator` — `Main` (entry point).  
+- `calculator.controller` —  orchestrates user interaction (console today; Spring `@RestController` can live here later).  
+- `calculator.model` — `Calculator` (builds BF programs).  
+- `calculator.model.interpreter` — interpreter used by the model (still “model layer,” not HTTP).  
 - `src/main/resources/scripts/` — `.bf` example programs.  
-- `src/main/java/calculator/Main.java` — entry point (console runner while the visualizer is wired up).
+- Viewer: terminal I/O today; a future React app would be the view in front of the same API.
 
 ## Run (console)
 
@@ -33,7 +36,7 @@ mvn compile
 java -cp target/classes calculator.Main
 ```
 
-By default, `Main` loads a script from `src/main/resources/scripts/` (e.g. `greetings.bf`). You can point it at another file to try different examples.
+The console flow is driven by `calculator.controller.Controller` (commands like `+`, `pronto`, `estresse`, etc.).
 
 ## Portfolio angle
 

@@ -4,16 +4,16 @@ import calculator.Main;
 import calculator.model.Calculator;
 import calculator.model.interpreter.BrainfuckInterpreter;
 
-import java.io.*;
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Controller {
-    private BrainfuckInterpreter bfInterpreter;
+
+    private final BrainfuckInterpreter bfInterpreter;
     private boolean isRunning;
     private BufferedReader bufferedReader;
-    private Calculator calculator;
-
-
+    private final Calculator calculator;
 
     public Controller() {
         this.bfInterpreter = new BrainfuckInterpreter();
@@ -22,11 +22,9 @@ public class Controller {
     }
 
     public void start() throws IOException {
-        System.out.println("Olá bem vindo a calculadora simples e normal.");
-        System.out.println("Digite somar para fazer uma soma");
+        System.out.println("Olá bem vindo a calculadora simples e normal.");    
         while (isRunning) {
             calculatorInterface();
-
         }
     }
 
@@ -38,7 +36,6 @@ public class Controller {
             isRunning = false;
             return;
         }
-
 
         String result = "";
 
@@ -78,12 +75,12 @@ public class Controller {
             default:
                 try {
                     int number = Integer.parseInt(input);
-                    if (number >= 10 || number <= -1 ) {
+                    if (number >= 10 || number <= -1) {
                         System.out.println("Apenas números de 0-9");
                         return;
                     }
                     calculator.newNumber(number);
-                } catch (Exception _) {
+                } catch (Exception ignored) {
                     System.out.println("Não entendi o comando");
                 }
                 break;

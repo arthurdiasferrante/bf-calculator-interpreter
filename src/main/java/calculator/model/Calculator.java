@@ -1,13 +1,13 @@
 package calculator.model;
 
-import calculator.Main;
 import calculator.model.interpreter.BrainfuckInterpreter;
 
 import java.io.IOException;
 
 public class Calculator {
+
     private final BrainfuckInterpreter interpreter = new BrainfuckInterpreter();
-    private StringBuilder bfCode = new StringBuilder("");;
+    private StringBuilder bfCode = new StringBuilder();
     private int ascii;
 
     public String addNumbersBf(int number1, int number2) {
@@ -44,9 +44,8 @@ public class Calculator {
         return this.ascii;
     }
 
-
     public void sumOperation() {
-        try (var inputStream = Main.class.getResourceAsStream("/scripts/soma.bf")) {
+        try (var inputStream = Calculator.class.getResourceAsStream("/scripts/soma.bf")) {
             if (inputStream == null) {
                 System.err.println("Arquivo .bf não encontrado na pasta resources/scripts/");
                 return;
@@ -59,7 +58,7 @@ public class Calculator {
     }
 
     public void subtractionOperation() {
-        try (var inputStream = Main.class.getResourceAsStream("/scripts/subtração.bf")) {
+        try (var inputStream = Calculator.class.getResourceAsStream("/scripts/subtração.bf")) {
             if (inputStream == null) {
                 System.err.println("Arquivo .bf não encontrado na pasta resources/scripts/");
                 return;

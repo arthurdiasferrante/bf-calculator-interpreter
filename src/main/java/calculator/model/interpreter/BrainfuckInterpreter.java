@@ -1,9 +1,6 @@
 package calculator.model.interpreter;
 
-import javax.print.DocFlavor;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class BrainfuckInterpreter {
     private StringBuilder output = new StringBuilder();
@@ -14,7 +11,6 @@ public class BrainfuckInterpreter {
         int pointer = 0;
         int codePointer = 0;
         output.setLength(0);
-
 
         while (codePointer < code.length()) {
             char command = code.charAt(codePointer);
