@@ -87,7 +87,7 @@ public class CalculatorController {
                         view.showDigitRangeError();
                         return;
                     }
-                    calculator.newNumber(number);
+                    calculator.injectNumber(number);
                 } catch (Exception ignored) {
                     view.showUnknownCommand();
                 }
