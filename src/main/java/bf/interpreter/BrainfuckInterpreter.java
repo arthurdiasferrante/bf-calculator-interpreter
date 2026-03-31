@@ -1,16 +1,21 @@
 package bf.interpreter;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BrainfuckInterpreter {
     private StringBuilder output = new StringBuilder();
+    private ExecutionResult executionResult;
 
-    private String interpret(String code) {
+    public ExecutionResult interpret(String code) {
 
         int[] memory = new int[30000];
         int pointer = 0;
         int codePointer = 0;
+
         output.setLength(0);
+        List<Frame> frames = new ArrayList<>();
 
         while (codePointer < code.length()) {
             char command = code.charAt(codePointer);
@@ -49,12 +54,29 @@ public class BrainfuckInterpreter {
                     }
                 }
             }
+            frames.add(new Frame(memory, pointer));
             codePointer++;
         }
-        return output.toString();
+        return new ExecutionResult(frames, output.toString());
     }
 
-    public String execute(String code) {
-        return this.interpret(code);
+
+    public class ExecutionResult {
+        private final List<Frame> frames;
+        private final String finalOutput;
+
+        private ExecutionResult(List<Frame> frames, String finalOutput) {
+            this.frames = frames;
+            this.finalOutput = finalOutput;
+        }
+
+        public List<Frame> getFrames() {
+            return frames;
+        }
+
+        public String getFinalOutput() {
+            return finalOutput;
+        }
     }
+
 }

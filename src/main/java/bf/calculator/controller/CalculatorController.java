@@ -59,10 +59,10 @@ public class CalculatorController {
                 break;
             case "pronto":
                 calculator.printResult();
-
                 String code = calculator.getBfCode();
                 view.showExecuting(code);
-                result = bfInterpreter.execute(code);
+                BrainfuckInterpreter.ExecutionResult executionResult = bfInterpreter.interpret(code);
+                result = (executionResult.getFinalOutput());
                 calculator.clearBfCode();
                 break;
             case "estresse":
@@ -74,7 +74,7 @@ public class CalculatorController {
 
                     String bfCode = new String(inputStream.readAllBytes());
                     view.showStressWait();
-                    result = bfInterpreter.execute(bfCode);
+                    result = bfInterpreter.interpret(bfCode).toString();
                 } catch (Exception e) {
                     view.showIoFailure(e.getMessage());
                     result = "Erro de I/O";

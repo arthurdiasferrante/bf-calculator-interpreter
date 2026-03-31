@@ -12,7 +12,7 @@ class BrainfuckInterpreterTest {
         BrainfuckInterpreter interpreter = new BrainfuckInterpreter();
 
         String bfHelloWorld = "++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.";
-        String result = interpreter.execute(bfHelloWorld);
+        String result = interpreter.interpret(bfHelloWorld).toString();
 
         assertEquals("Hello World!\n", result);
     }
@@ -21,7 +21,7 @@ class BrainfuckInterpreterTest {
     void shouldReturnEmptyStringForEmptyCode() {
         BrainfuckInterpreter interpreter = new BrainfuckInterpreter();
 
-        String result = interpreter.execute("");
+        String result = interpreter.interpret("").toString();
 
         assertNotNull(result);
         assertEquals("", result);

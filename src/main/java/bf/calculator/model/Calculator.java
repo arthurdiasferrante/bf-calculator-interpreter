@@ -32,7 +32,7 @@ public class Calculator {
 
         //
 
-        return interpreter.execute(bfCode.toString());
+        return interpreter.interpret(bfCode.toString()).toString();
     }
 
     public void newNumber(int number) {
@@ -75,4 +75,5 @@ public class Calculator {
     public void clearBfCode() {
         bfCode.setLength(0);
     }
+
 }
