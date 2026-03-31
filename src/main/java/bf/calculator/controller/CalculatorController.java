@@ -58,11 +58,19 @@ public class CalculatorController {
                 view.showBfCode(calculator.getBfCode());
                 break;
             case "pronto":
-                calculator.printResult();
                 String code = calculator.getBfCode();
-                view.showExecuting(code);
                 BrainfuckInterpreter.ExecutionResult executionResult = bfInterpreter.interpret(code);
-                result = (executionResult.getFinalOutput());
+
+                var frames = executionResult.getFrames();
+                var lastFrame = frames.get(frames.size() - 1);
+                int[] finalMemory = lastFrame.getMemorySnapshot();
+
+                StringBuilder mathResult = new StringBuilder();
+                for (int i = 0; i <=7; i++) {
+                    mathResult.append(finalMemory[i]);
+                }
+
+                result = String.valueOf(Integer.parseInt(mathResult.toString()));
                 calculator.clearBfCode();
                 break;
             case "estresse":
@@ -83,7 +91,7 @@ public class CalculatorController {
             default:
                 try {
                     int number = Integer.parseInt(input);
-                    if (number >= 10 || number <= -1) {
+                    if (number <= -1) {
                         view.showDigitRangeError();
                         return;
                     }

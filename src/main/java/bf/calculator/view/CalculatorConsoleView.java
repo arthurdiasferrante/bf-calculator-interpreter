@@ -25,9 +25,9 @@ public class CalculatorConsoleView {
         System.out.println(code);
     }
 
-    public void showExecuting(String code) {
-        System.out.println("Executando:" + code);
-    }
+//    public void showExecuting(String code) {
+//        System.out.println("Executando:" + code);
+//    }
 
     public void showStressWait() {
         System.out.println("Executando... por favor aguarde.");
@@ -42,7 +42,7 @@ public class CalculatorConsoleView {
     }
 
     public void showDigitRangeError() {
-        System.out.println("Apenas números de 0-9");
+        System.out.println("Não é permitido números negativos");
     }
 
     public void showUnknownCommand() {
